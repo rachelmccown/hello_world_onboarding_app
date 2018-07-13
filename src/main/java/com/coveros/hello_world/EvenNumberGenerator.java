@@ -1,4 +1,4 @@
-package com.coveros.hello_world;
+package main.java.com.coveros.hello_world;
 
 import java.util.Random;
 
