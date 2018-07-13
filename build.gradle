@@ -27,3 +27,4 @@ apply plugin: 'nebula.rpm'
 jacoco {
     toolVersion = "0.7.4+"
 }
+
