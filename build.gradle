@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-apply plugin: 'java's
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
