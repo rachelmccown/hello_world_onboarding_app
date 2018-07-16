@@ -109,6 +109,7 @@ pmd {
   ]
 }
 
+/*
 sonarRunner {
     sonarProperties {
         property "sonar.host.url", "http://http://172.31.33.23:9000"
@@ -120,6 +121,6 @@ sonarRunner {
         property "sonar.jdbc.password", "coveros1"
         property "sonar.java.source", "1.8"
     }
-}
+} */
 
 
