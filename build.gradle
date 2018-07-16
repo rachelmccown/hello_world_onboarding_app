@@ -1,12 +1,18 @@
 buildscript {
     repositories {
     	jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
 
     dependencies {
     	classpath 'org.spockframework:spock-core:1.0-groovy-2.4'
     	classpath 'com.netflix.nebula:gradle-ospackage-plugin:2.0.2'
     	classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
     }
 }
 
@@ -27,7 +33,9 @@ apply plugin: 'nebula.rpm'
 apply plugin: 'pmd'
 apply plugin: "findbugs"
 apply plugin: 'checkstyle'
-apply plugin: "sonar-runner"
+//apply plugin: "sonar-runner"
+apply plugin: "org.sonarqube"
+
 jacocoTestReport {
     reports {
         xml.enabled true
@@ -35,7 +43,9 @@ jacocoTestReport {
     }
 }
 
-//testing git push hook 2
+jacoco {
+    toolVersion = "0.7.4+"
+}
 
 // JDK version source compatibility
 sourceCompatibility = 1.8
@@ -99,6 +109,7 @@ pmd {
   ]
 }
 
+/*
 sonarRunner {
     sonarProperties {
         property "sonar.host.url", "http://http://172.31.33.23:9000"
@@ -110,9 +121,6 @@ sonarRunner {
         property "sonar.jdbc.password", "coveros1"
         property "sonar.java.source", "1.8"
     }
-}
+}*/
 
-jacoco {
-    toolVersion = "0.7.4+"
-}
 
