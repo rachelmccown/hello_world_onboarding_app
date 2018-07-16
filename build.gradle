@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
+apply plugin: 'java's
 
 repositories {
     mavenCentral()
@@ -24,6 +24,94 @@ dependencies {
 apply plugin: "jacoco"
 apply plugin: 'war'
 apply plugin: 'nebula.rpm'
+apply plugin: 'pmd'
+apply plugin: "findbugs"
+apply plugin: 'checkstyle'
+apply plugin: "sonar-runner"
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        csv.enabled false
+    }
+}
+
+//testing git push hook 2
+
+// JDK version source compatibility
+sourceCompatibility = 1.8
+// project version
+version = '1.0.2'
+// War file name
+war.baseName = 'hello-world'
+// Web directory, this overrides the default value "webapp"
+// project.webAppDirName = 'WebContent'
+
+// Set source directory
+/*sourceSets {
+        main {
+            java {
+                srcDir 'src'
+            }
+        }
+    }*/
+
+task app1Rpm(type: Rpm) {
+    packageName 'hello-world'
+    version '1.0.2'
+    arch NOARCH
+    os LINUX
+    into ('/usr/share/tomcat/webapps/') {
+//      into ('/var/lib/tomcat/webapps') {
+        addParentDirs = false
+    //from (war.outputs.files) {
+           // addParentDirs = false
+       // }
+    }
+}
+
+//UPLOAD ARCHIVES STUFF USE THIS OR MAVEN STUFF
+artifacts {
+    archives app1Rpm
+}
+//new comment
+uploadArchives {
+    repositories {
+        maven {
+          credentials {
+                username "admin"
+                password "admin123"
+            }
+          
+            // change to point to your repo, e.g. http://my.org/repo
+            url "https://github.com/rachelmccown/hello_world_onboarding_app.git"
+      }
+    }
+}
+
+pmd {
+  ignoreFailures = true
+  //sourceSets = ['src/main', 'src/test']
+  reportsDir = file("$project.buildDir/reports/pmd")
+  ruleSets = [
+    "java-basic", 
+    "java-braces",
+    "java-comments"
+  ]
+}
+
+sonarRunner {
+    sonarProperties {
+        property "sonar.host.url", "http://http://172.31.33.23:9000"
+        property "sonar.username", "admin"
+        property "sonar.password", "admin"
+        property "sonar.jdbc.url", "jdbc:mysql://<YOUR_PRIVATE_IP>:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance"
+        property "sonar.jdbc.driverClassName", "com.mysql.jdbc.Driver"
+        property "sonar.jdbc.username", "sonarqube"
+        property "sonar.jdbc.password", "coveros1"
+        property "sonar.java.source", "1.8"
+    }
+}
+
 jacoco {
     toolVersion = "0.7.4+"
 }
