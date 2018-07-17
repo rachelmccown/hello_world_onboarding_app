@@ -99,7 +99,7 @@ uploadArchives {
             //url "http://172.31.2.109:8081/nexus"
             // need to remove trailing '/'s manually or they double up, ideally fix this on end of
             // whatever is appended to url
-            url "http://172.31.2.109:8081/nexus/content/repositories/snapshots"
+            url "http://172.31.33.23:8081/nexus/content/repositories/snapshots"
         }
     }
 }
@@ -118,7 +118,7 @@ pmd {
 //changed from runner to scanner
 sonarqube {
     properties {
-        property "sonar.host.url", "http://172.31.2.109:9000"
+        property "sonar.host.url", "http://172.31.33.23:9000"
         property "sonar.username", "admin"
         property "sonar.password", "admin"
         //property "sonar.jdbc.url", "jdbc:mysql://172.31.2.109:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance"
