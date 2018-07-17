@@ -1,16 +1,12 @@
 buildscript {
     repositories {
         jcenter()
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
     }
 
     dependencies {
         classpath 'org.spockframework:spock-core:1.0-groovy-2.4'
         classpath 'com.netflix.nebula:gradle-ospackage-plugin:2.0.2'
         classpath 'com.bmuschko:gradle-nexus-plugin:2.3.1'
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
     }
 }
 
@@ -40,7 +36,6 @@ jacoco {
 apply plugin: 'pmd'
 apply plugin: "findbugs"
 apply plugin: 'checkstyle'
-apply plugin: 'org.sonarqube'
 
 
 jacocoTestReport {
@@ -120,7 +115,7 @@ pmd {
 }
 
 //changed from runner to scanner
-org.sonarqube {
+sonarqube {
     properties {
         property "sonar.host.url", "http://172.31.33.23:9000"
         property "sonar.username", "admin"
@@ -132,6 +127,9 @@ org.sonarqube {
         property "sonar.java.source", "1.8"
     }
 }
+
+
+apply plugin: 'org.sonarqube'
 
 //jenkins + tomcat IP: http://172.31.34.177
 //sonar IP: http://172.31.33.23
