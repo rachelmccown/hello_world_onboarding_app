@@ -36,7 +36,7 @@ jacoco {
 apply plugin: 'pmd'
 apply plugin: "findbugs"
 apply plugin: 'checkstyle'
-//apply plugin: "sonarqube"
+apply plugin: "sonarqube"
 
 
 jacocoTestReport {
@@ -129,5 +129,5 @@ sonarqube {
     }
 }
 
-//jenkins + tomcat IP: http://172.31.2.196
-//sonar IP: http://172.31.2.109
+//jenkins + tomcat IP: http://172.31.34.177
+//sonar IP: http://172.31.33.23
