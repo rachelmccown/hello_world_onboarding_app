@@ -1,3 +1,5 @@
+//Some code
+
 package main.java.com.coveros.hello_world;
 
 import java.util.Random;
