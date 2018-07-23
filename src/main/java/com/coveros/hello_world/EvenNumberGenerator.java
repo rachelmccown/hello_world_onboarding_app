@@ -1,4 +1,4 @@
-//hello world
+//hello
 
 package main.java.com.coveros.hello_world;
 
